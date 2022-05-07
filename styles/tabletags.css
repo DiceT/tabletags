@@ -1,0 +1,35 @@
+.tabletags-container {
+    margin: 2px 0px 0px 0px;
+}
+
+.tabletag-container {
+    border: 1px solid black;
+    padding: 2px;
+    border-radius: 5px;
+    display: flex;
+    background-color: #0000000d;
+}
+
+.tabletag-container .tabletag {
+    padding: 2px;
+    border: 1px solid black;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    border-radius: 3px;
+    background-color: #0000000d;
+}
+
+.tabletag i {
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+.tabletag-container input {
+    flex: 1;
+    font-size: 16px;
+    padding: 4px;
+    outline: none;
+    border: 0;
+    background-color: #0000000d;
+}
