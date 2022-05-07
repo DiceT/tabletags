@@ -28,6 +28,6 @@
         "path": "lang/en.json"
     }],
     "url": "https://github.com/dicet/tabletags",
-    "manifest": "https://raw.githubusercontent.com/dicet/tabletags/0.1.0/system.json",
+    "manifest": "https://raw.githubusercontent.com/dicet/tabletags/0.1.0/module.json",
     "download": "https://github.com/dicet/tabletags/archive/refs/tags/0.1.0.zip"
 }
