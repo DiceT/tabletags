@@ -4,8 +4,8 @@ Currently, you can roll by tag and all tables that share that tag will be consid
 
 tableTagsRoller("TableTag", false);
 
-// The first property is the name of the tag.
-// The second property is whether you want to skip the tables in the Compendium or not. true to skip, false to include.
+- The first property is the name of the tag.
+- The second property is whether you want to skip the tables in the Compendium or not. true to skip, false to include.
 
 A future update will monitor all rolls on all tables and review if there are tags present. If so, it will look for RollTables with shared tags and randomly choose one. In the case of a RollTable having multiple tags, a dialog box will be presented for the user to choose which tag to roll with.
 
