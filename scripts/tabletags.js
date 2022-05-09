@@ -95,18 +95,22 @@ export class TableTags {
         let tablesByTag = [];
         
         game.tables.forEach( table => {
-            table.data.flags.tabletags.tags.forEach ( tag => {
-                if (tag === tableTag) tablesByTag.push(table);
-            });
+            if (table.getFlag("tabletags", "tags") != undefined) {
+                table.data.flags.tabletags.tags.forEach ( tag => {
+                    if (tag === tableTag) tablesByTag.push(table);
+                });
+            }
         });
 
         if (!skipCompendium) {
             game.packs.forEach( pack => {
                 if (pack.documentName === "RollTable") {
                     pack.forEach (table => {
-                        table.data.flags.tabletags.tags.forEach ( tag => {
-                            if (tag === tableTag) tablesByTag.push(table);
-                        });
+                        if (table.getFlag("tabletags", "tags") != undefined) {
+                            table.data.flags.tabletags.tags.forEach ( tag => {
+                                if (tag === tableTag) tablesByTag.push(table);
+                            });
+                        }
                     });
                 }
             });
