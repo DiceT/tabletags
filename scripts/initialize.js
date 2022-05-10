@@ -7,5 +7,6 @@ Hooks.on('renderRollTableConfig', (rollTableConfig, html, rollTable) => {
 Hooks.once('ready', async () => {
     await TableTags.initialize();
     globalThis.tableTagsRoller = TableTagsMacroAPI.tableTagsRoller;
+    globalThis.TableTagsAPI = TableTagsMacroAPI.TableTagsAPI;
 });
 

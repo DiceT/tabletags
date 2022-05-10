@@ -173,8 +173,7 @@ export class TableTags {
             let split = badge.split('|');
             if ( split[0] === "ROLL" ) {
                 let tags = split[1].split(",");
-                console.log(tags);
-                let replace = await this.TableTagRoller(tags, true);
+                let replace = await this.TableTagRoller(tags, false);
                 result = result.replace(regEx, replace);
             }
         }
@@ -185,5 +184,6 @@ export class TableTags {
 
 // Export the TableTag Roller so macros can use the TableTagRoller function
 export class TableTagsMacroAPI {
+    static TableTagsAPI = TableTags;
     static tableTagsRoller = TableTags.TableTagRoller;
 }
