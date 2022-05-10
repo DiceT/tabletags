@@ -90,36 +90,96 @@ export class TableTags {
     }
 
     // This handles searching for all shared TableTags and rolling on one of those tables
-    static async TableTagRoller(tableTag, skipCompendium = true) {
+    static async TableTagRoller(tableTags, quietMode = false, includeCompendium = true) {
 
         let tablesByTag = [];
+        let tableTagArray = [];
         
+        if ( Array.isArray(tableTags) ) {
+            tableTagArray = tableTags;
+        }
+        else {
+            tableTagArray.push(tableTags);
+        }
+
         game.tables.forEach( table => {
             if (table.getFlag("tabletags", "tags") != undefined) {
-                table.data.flags.tabletags.tags.forEach ( tag => {
-                    if (tag === tableTag) tablesByTag.push(table);
-                });
+                if ( table.data.flags.tabletags.tags.filter(element => tableTagArray.includes(element)).length === tableTagArray.length ) {
+                    tablesByTag.push(table);
+                };
             }
-        });
+        })
 
-        if (!skipCompendium) {
+        if ( includeCompendium ) {
             game.packs.forEach( pack => {
                 if (pack.documentName === "RollTable") {
                     pack.forEach (table => {
                         if (table.getFlag("tabletags", "tags") != undefined) {
-                            table.data.flags.tabletags.tags.forEach ( tag => {
-                                if (tag === tableTag) tablesByTag.push(table);
-                            });
+                            if ( table.data.flags.tabletags.tags.filter(element => tableTagArray.includes(element)).length === tableTagArray.length ) {
+                                tablesByTag.push(table);
+                            }
                         }
                     });
                 }
-            });
+            });            
         }
-        
+
         let table = await tablesByTag[Math.floor(Math.random() * tablesByTag.length)];
-        let roll = table.roll();
-       
-        table.draw(roll);
+        let roll;
+        let result;
+
+        if ( quietMode ) {
+            roll = await table.roll();
+            result = roll.results[0].data.text;
+        }
+        else {
+            roll = await table.draw();
+            result = roll.results[0].text;
+        }
+
+        // Handle "Roll Twice" results.
+        if ( result.toLowerCase() === "roll twice" ) {
+            if ( quietMode ) {
+                while ( result.toLowerCase() === "roll twice") {
+                    roll = await table.roll();
+                    result = roll.results[0].data.text;
+                }
+                roll = await table.roll();
+                let resultB = roll.results[0].data.text;
+                while ( resultB.toLowerCase() === "roll twice") {
+                    roll = await table.roll();
+                    resultB = roll.results[0].data.text;
+                }
+                result += " | " + resultB
+            }
+            else {
+                while ( result.toLowerCase() === "roll twice") {
+                    roll = await table.draw();
+                    result = roll.results[0].text;
+                }
+                roll = await table.draw();
+                let resultB = roll.results[0].text;
+                while ( resultB.toLowerCase() === "roll twice") {
+                    roll = await table.draw();
+                    resultB = roll.results[0].text;
+                }
+                result += " | " + resultB
+            }
+        }
+
+        let regEx = new RegExp('\\[(.*?)\\]');
+        if ( regEx.test(result)) {
+            let badge = regEx.exec(result)[1];
+            let split = badge.split('|');
+            if ( split[0] === "ROLL" ) {
+                let tags = split[1].split(",");
+                console.log(tags);
+                let replace = await this.TableTagRoller(tags, true);
+                result = result.replace(regEx, replace);
+            }
+        }
+
+        return result;
     }
 }
 
