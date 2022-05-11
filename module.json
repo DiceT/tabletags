@@ -1,8 +1,8 @@
 {
-    "name": "tabletags",
+    "id": "tabletags",
     "title": "TableTags",
     "description": "A Foundry module for adding tags to RollTables to roll on. All tables that share a tag are considered.",
-    "author": "Dice T",
+    "authors": [ "Dice T" ],
     "version": "0.1.4",
     "minimumCoreVersion": "9.269",
     "compatibleCoreVersion": "9",
@@ -25,7 +25,7 @@
     "languages": [{
         "lang": "en",
         "name": "English",
-        "path": "lang/en.json"
+        "path": "languages/en.json"
     }],
     "url": "https://github.com/dicet/tabletags",
     "manifest": "https://raw.githubusercontent.com/dicet/tabletags/0.1.4/module.json",
