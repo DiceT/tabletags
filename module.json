@@ -1,9 +1,15 @@
 {
-    "id": "tabletags",
+    "name": "tabletags",
     "title": "TableTags",
     "description": "A Foundry module for adding tags to RollTables to roll on. All tables that share a tag are considered.",
-    "authors": [ "Dice T" ],
-    "version": "0.1.4",
+    "authors": [
+        {
+          "name": "DiceT",
+          "email": "",
+          "url": ""
+        }
+    ],
+    "version": "0.1.5",
     "minimumCoreVersion": "9.269",
     "compatibleCoreVersion": "9",
     "esmodules": [
@@ -18,7 +24,7 @@
             "label": "TableTags macros",
             "path": "packs/tabletags-macros.db",
             "module": "tabletags",
-            "entity": "Macro",
+            "type": "Macro",
             "private": true
         }
     ],
@@ -28,6 +34,6 @@
         "path": "languages/en.json"
     }],
     "url": "https://github.com/dicet/tabletags",
-    "manifest": "https://raw.githubusercontent.com/dicet/tabletags/0.1.4/module.json",
-    "download": "https://github.com/dicet/tabletags/archive/refs/tags/0.1.4.zip"
+    "manifest": "https://raw.githubusercontent.com/dicet/tabletags/0.1.5/module.json",
+    "download": "https://github.com/dicet/tabletags/archive/refs/tags/0.1.5.zip"
 }

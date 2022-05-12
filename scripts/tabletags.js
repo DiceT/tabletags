@@ -167,17 +167,30 @@ export class TableTags {
             }
         }
 
+        // BADGES: 
+        // [TAGS|tabletag1,tabletag2] - Roll on the provided TableTags
+        // [TABLE|table] - Roll on the provided table
+        // [ROLL|2d6+1] - Roll the provided dice
         let regEx = new RegExp('\\[(.*?)\\]');
         if ( regEx.test(result)) {
             let badge = regEx.exec(result)[1];
             let split = badge.split('|');
-            if ( split[0] === "ROLL" ) {
-                let tags = split[1].split(",");
-                let replace = await this.TableTagRoller(tags, false);
-                result = result.replace(regEx, replace);
+            let replace;
+            switch ( split[0] ) {
+                case "TAGS": 
+                    replace = await this.TableTagRoller(split[1].split(","), true);
+                    result = result.replace(regEx, replace);
+                    break;
+                case "TABLE":
+                    break;
+                case "ROLL":
+                    let diceRoll = new Roll(split[1]);
+                    await diceRoll.evaluate({async: true});
+                    replace = (diceRoll.total);
+                    result = result.replace(regEx, replace);
+                    break;
             }
         }
-
         return result;
     }
 }

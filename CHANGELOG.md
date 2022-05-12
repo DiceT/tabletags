@@ -1,3 +1,8 @@
+0.1.5
+- Added inline table rolling options when using specified badges within the table results. Currently, these do not change rolls that go directly to the chat window. You would first need to store the results in a variable, then display the final results to chat.
+- [TAGS|tabletag1,tabletag2] - Roll on the provided TableTags, replacing the badge with the results of the TableTags roll.
+- [ROLL|2d6+1] - Roll the provided dice, replacing the badge with the roll result.
+
 0.1.4
 - Added the ability to look for multiple TableTags. All TableTags must be matched in order for the table to qualify. See new method below.
 - If a table result is designated as "Roll Twice" the table will continue to be rolled on until two unique results are returned.
