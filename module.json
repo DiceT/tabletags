@@ -1,39 +1,43 @@
 {
-    "name": "tabletags",
-    "title": "TableTags",
-    "description": "A Foundry module for adding tags to RollTables to roll on. All tables that share a tag are considered.",
-    "authors": [
-        {
-          "name": "DiceT",
-          "email": "",
-          "url": ""
-        }
-    ],
-    "version": "0.1.5",
-    "minimumCoreVersion": "9.269",
-    "compatibleCoreVersion": "9",
-    "esmodules": [
-        "scripts/initialize.js"
-    ],
-    "styles": [
-        "styles/tabletags.css"
-    ],
-    "packs": [
-        {
-            "name": "tabletags-macros",
-            "label": "TableTags macros",
-            "path": "packs/tabletags-macros.db",
-            "module": "tabletags",
-            "type": "Macro",
-            "private": true
-        }
-    ],
-    "languages": [{
-        "lang": "en",
-        "name": "English",
-        "path": "languages/en.json"
-    }],
-    "url": "https://github.com/dicet/tabletags",
-    "manifest": "https://raw.githubusercontent.com/dicet/tabletags/0.1.5/module.json",
-    "download": "https://github.com/dicet/tabletags/archive/refs/tags/0.1.5.zip"
+  "title": "TableTags",
+  "description": "A Foundry module for adding tags to RollTables to roll on. All tables that share a tag are considered.",
+  "authors": [
+    {
+      "name": "DiceT",
+      "flags": {}
+    }
+  ],
+  "version": "0.2.0",
+  "esmodules": [
+    "scripts/initialize.js"
+  ],
+  "styles": [
+    "styles/tabletags.css"
+  ],
+  "packs": [
+    {
+      "name": "tabletags-macros",
+      "label": "TableTags macros",
+      "path": "packs/tabletags-macros.db",
+      "type": "Macro",
+      "private": true,
+      "flags": {}
+    }
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "languages/en.json",
+      "flags": {}
+    }
+  ],
+  "url": "https://github.com/dicet/tabletags",
+  "manifest": "https://raw.githubusercontent.com/dicet/tabletags/0.2.0/module.json",
+  "download": "https://github.com/dicet/tabletags/archive/refs/tags/0.2.0.zip",
+  "id": "tabletags",
+  "compatibility": {
+    "minimum": "9.269",
+    "verified": "10"
+  }
 }

@@ -90,7 +90,7 @@ export class TableTags {
     }
 
     // This handles searching for all shared TableTags and rolling on one of those tables
-    static async TableTagRoller(tableTags, quietMode = false, includeCompendium = true) {
+    static async TableTagRoller( tableTags, quietMode = false, includeCompendium = true, asAnd = true ) {
 
         let tablesByTag = [];
         let tableTagArray = [];
@@ -104,7 +104,12 @@ export class TableTags {
 
         game.tables.forEach( table => {
             if (table.getFlag("tabletags", "tags") != undefined) {
-                if ( table.data.flags.tabletags.tags.filter(element => tableTagArray.includes(element)).length === tableTagArray.length ) {
+                if ( asAnd ) {
+                    if ( table.data.flags.tabletags.tags.filter(element => tableTagArray.includes(element)).length === tableTagArray.length ) {
+                        tablesByTag.push(table);
+                    };
+                }
+                if ( table.data.flags.tabletags.tags.filter(element => tableTagArray.includes(element)).length > 0 ) {
                     tablesByTag.push(table);
                 };
             }
@@ -115,9 +120,14 @@ export class TableTags {
                 if (pack.documentName === "RollTable") {
                     pack.forEach (table => {
                         if (table.getFlag("tabletags", "tags") != undefined) {
-                            if ( table.data.flags.tabletags.tags.filter(element => tableTagArray.includes(element)).length === tableTagArray.length ) {
-                                tablesByTag.push(table);
+                            if ( asAnd ) {
+                                if ( table.data.flags.tabletags.tags.filter(element => tableTagArray.includes(element)).length === tableTagArray.length ) {
+                                    tablesByTag.push(table);
+                                };
                             }
+                            if ( table.data.flags.tabletags.tags.filter(element => tableTagArray.includes(element)).length > 0 ) {
+                                tablesByTag.push(table);
+                            };
                         }
                     });
                 }
